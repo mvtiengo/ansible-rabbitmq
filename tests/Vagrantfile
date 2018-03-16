@@ -1,0 +1,30 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANT_API_VERSION = 2
+
+Vagrant.configure(VAGRANT_API_VERSION) do |config|
+  config.ssh.insert_key = false
+  config.hostmanager.enabled = true
+  config.hostmanager.manage_host = true
+  config.hostmanager.manage_guest = true
+  config.hostmanager.ignore_private_ip = false
+  config.hostmanager.include_offline = true
+
+  config.vm.define 'rabbitmq01' do |ubuntu1|
+    ubuntu1.vm.hostname = 'rabbitmq01'
+    ubuntu1.vm.box = "nexces/ubuntu-zesty"
+    ubuntu1.vm.network "private_network", ip: "192.168.56.11"
+  end
+  config.vm.define 'rabbitmq02' do |ubuntu2|
+    ubuntu2.vm.hostname = 'rabbitmq02'
+    ubuntu2.vm.box = "nexces/ubuntu-zesty"
+    ubuntu2.vm.network "private_network",  ip: "192.168.56.12"
+  end
+  config.vm.define 'rabbitmq03' do |ubuntu3|
+    ubuntu3.vm.hostname = 'rabbitmq03'
+    ubuntu3.vm.box = "nexces/ubuntu-zesty"
+    ubuntu3.vm.network "private_network",  ip: "192.168.56.13"
+  end
+
+end

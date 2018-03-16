@@ -1,0 +1,21 @@
+---
+# Usuario admin
+admin_user: admin
+admin_password: admin
+
+# Erlang Cookie
+erlang_cookie: PZCYRTAWOOCGDYDUIBZX
+
+# Clustering
+rabbitmq_master: rabbitmq01
+rabbitmq_master_node: rabbitmq01
+
+# Watermark params
+waltermark: 0.62
+
+# Hipe Compile
+hipe_compile: false
+
+# Politica de HA
+#rabbit_policy: set_policy ha-inventory "^inventory.*worker.*" '{"ha-mode":"all", "ha-sync-mode":"automatic" }' filas inventory.worker.*
+#rabbit_policy: set_policy ha-inventory "" '{"ha-mode":"all", "ha-sync-mode":"automatic" }' todas as filas
