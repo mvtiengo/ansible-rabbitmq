@@ -5,7 +5,7 @@
 Editar o arquio group_vars/all com os seguintes valores
 
 ```python
---
+
 # Usuario para acesso e login no rabbitmq manager
 admin_user: admin
 admin_password: admin
