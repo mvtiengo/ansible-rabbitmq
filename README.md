@@ -1,4 +1,4 @@
-# ansible-rabbitmq para Ubuntu
+# Role Ansible para Ubuntu
 
 ## Ajustes
 
