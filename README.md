@@ -1,4 +1,4 @@
-# ansible-rabbitmq
+# ansible-rabbitmq para Ubuntu
 
 ## Ajustes
 
