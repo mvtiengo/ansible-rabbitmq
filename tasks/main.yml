@@ -38,7 +38,7 @@
 
 - name: Start Rabbitmq Server
   systemd:
-    state: restarted
+    state: started
     name: rabbitmq-server
 
 - name: Check if cluster its OK
@@ -103,7 +103,6 @@
   template:
     src: rabbit_conf.j2
     dest: /etc/rabbitmq/rabbitmq.config
-  notify: Restart rabbitmq-server
 
 - name: Configure high memory Watermark
   command: rabbitmqctl set_vm_memory_high_watermark {{ watermark }}
