@@ -2,24 +2,24 @@
 - name: Add Erlang apt repo key
   apt_key:
     url: https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc
-    state: present
+    state: latest
 
 - name: Add Erlang apt repo, dependency for RabbitMQ (Ubuntu repo)
   apt_repository:
     repo: "deb http://packages.erlang-solutions.com/ubuntu {{ ansible_distribution_release }} contrib"
-    state: present
+    state: latest
     update_cache: yes
   when: ansible_distribution == 'Ubuntu'
 
 - name: Add RabbitMQ apt repo key
   apt_key:
     url: https://www.rabbitmq.com/rabbitmq-release-signing-key.asc
-    state: present
+    state: latest
 
 - name: Add RabbitMQ apt repo (Debian/Ubuntu)
   apt_repository:
     repo: "deb https://dl.bintray.com/rabbitmq/debian {{ ansible_distribution_release }} main"
-    state: present
+    state: latest
     update_cache: yes
 
 - name: Install rabbitmq-server package (from RabbitMQ repo)
