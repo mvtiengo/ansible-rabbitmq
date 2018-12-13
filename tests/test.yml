@@ -40,7 +40,7 @@
       loop: "{{ container_list }}"
 
 - name: Configuracao do RabitMQ Clustering
-  hosts: rabbitmq
+  hosts: localhost
   become: yes
   become_method: sudo
   vars:
