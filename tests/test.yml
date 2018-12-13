@@ -6,7 +6,6 @@
   vars:
     container_list:
       - xenial
-      - bionic
   tasks:
     - name: Build docker images
       docker_image:
