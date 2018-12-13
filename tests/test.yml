@@ -1,4 +1,45 @@
 ---
+- name: Create containers inventory group
+  hosts: localhost
+  become: false
+  gather_facts: false
+  vars:
+    container_list:
+      - xenial
+      - bionic
+  tasks:
+    - name: Build docker images
+      docker_image:
+        name: "{{ item }}"
+        tag: latest
+        path: "containers/{{ item }}"
+        force: false
+      check_mode: False
+      loop: "{{ container_list }}"
+
+    - name: Run docker containers
+      docker_container:
+        name: "{{ item }}"
+        hostname: "{{ item }}"
+        image: "{{ item }}"
+        command: "/sbin/init"
+        recreate: no
+        state: started
+        privileged: true
+      check_mode: False
+      loop: "{{ container_list }}"
+
+    - name: Create inventory group on-the-fly
+      add_host:
+        name: "{{ item }}"
+        ansible_connection: docker
+        ansible_user: root
+        ansible_python_interpreter: python
+        groups: containers
+      check_mode: False
+      changed_when: False
+      loop: "{{ container_list }}"
+
 - name: Configuracao do RabitMQ Clustering
   hosts: rabbitmq
   become: yes

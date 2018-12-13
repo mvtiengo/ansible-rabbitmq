@@ -1,0 +1,28 @@
+---
+dist: trusty
+sudo: required
+
+services:
+  - docker
+
+language: python
+python:
+  - "3.6"
+
+before_install:
+  - deactivate
+  - sudo -H pip install ansible=="2.5.5" docker-py
+
+before_script:
+  - cd tests
+
+script:
+  - if [ -f requirements.yml ]; then ansible-galaxy install -r requirements.yml -p ../../; fi
+  - ansible-playbook test.yml --syntax-check
+  - ansible-playbook test.yml --check
+  - ansible-playbook test.yml
+  - ansible-playbook test.yml | grep -q 'changed=0.*failed=0' && (echo 'Role has passed the idempotence test' && exit 0) || (echo 'Role has failed the idempotence test' && exit 1)
+
+notifications:
+  webhooks: 
+    - https://galaxy.ansible.com/api/v1/notifications/
