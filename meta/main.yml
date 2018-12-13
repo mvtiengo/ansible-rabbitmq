@@ -9,6 +9,7 @@ galaxy_info:
   - name: Ubuntu
     versions:
       - all
-  categories:
-    - system:queue
+galaxy_tags:
+    - system
+    - queue
 dependencies: []
