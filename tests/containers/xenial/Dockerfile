@@ -14,4 +14,5 @@ RUN apt-get -y update && \
     rm -rf /var/lib/apt/lists/*
 RUN /bin/systemctl set-default multi-user.target
 
-CMD ["/sbin/init"]
+USER docker
+CMD /bin/bash
