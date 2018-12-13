@@ -50,34 +50,34 @@
   systemd:
     state: stopped
     name: rabbitmq-server
-  when: rabbitmq_is_ok | failed
+  when: rabbitmq_is_ok is failed
 
 - name: Detache all rabbitmq nodes
   command: rabbitmq-server -detached
-  when: rabbitmq_is_ok | failed
+  when: rabbitmq_is_ok is failed
 
 - name: Stop rabbitmq nodes
   command: rabbitmqctl stop_app
   when:
-    - rabbitmq_is_ok | failed
+    - rabbitmq_is_ok is failed
     - inventory_hostname != "{{ rabbitmq_master }}"
 
 - name: Join all rabbitmq slaves into master
   command: rabbitmqctl join_cluster rabbit@{{ rabbitmq_master_node }}
   when:
-    - rabbitmq_is_ok | failed
+    - rabbitmq_is_ok is failed
     - inventory_hostname != "{{ rabbitmq_master }}"
 
 - name: Start all rabbitmq nodes
   command: rabbitmqctl start_app
   when:
-    - rabbitmq_is_ok | failed
+    - rabbitmq_is_ok is failed
     - inventory_hostname != "{{ rabbitmq_master }}"
 
 - name: Create HA replica
   command: rabbitmqctl set_policy ha-inventory "" '{"ha-mode":"all", "ha-sync-mode":"automatic" }'
   when:
-    - rabbitmq_is_ok | failed
+    - rabbitmq_is_ok is failed
     - inventory_hostname == "{{ rabbitmq_master }}"
 
 - name: Enable cluster management
@@ -96,7 +96,7 @@
     read_priv: .*
     state: present
   when:
-    - rabbitmq_is_ok | failed
+    - rabbitmq_is_ok is failed
     - inventory_hostname == "{{ rabbitmq_master }}"
 
 - name: Configure rabbitmq config
@@ -106,9 +106,9 @@
 
 - name: Configure high memory Watermark
   command: rabbitmqctl set_vm_memory_high_watermark {{ watermark }}
-  when: rabbitmq_is_ok|failed
+  when: rabbitmq_is_ok is failed
 
 - name: kill epmd
   command: pkill -u rabbitmq
   when:
-    - rabbitmq_is_ok | failed
+    - rabbitmq_is_ok is failed
