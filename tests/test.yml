@@ -39,14 +39,14 @@
       changed_when: False
       loop: "{{ container_list }}"
 
-#- name: Configuracao do RabitMQ Clustering
-#  hosts: localhost
-#  become: yes
-#  become_method: sudo
-#  vars:
-#    rabbitmq_master: rabbitmq01
-#    hipe_compile: True
-#    watermark: 0.65
+- name: Configuracao do RabitMQ Clustering
+  hosts: localhost
+  become: yes
+  become_method: sudo
+  vars:
+    rabbitmq_master: rabbitmq01
+    hipe_compile: True
+    watermark: 0.65
 
   roles:
     - ../../ 
