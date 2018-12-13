@@ -9,7 +9,7 @@ galaxy_info:
   - name: Ubuntu
     versions:
       - xenial
-galaxy_tags:
-    - system
-    - queue
+  galaxy_tags:
+      - system
+      - queue
 dependencies: []
