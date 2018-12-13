@@ -2,30 +2,30 @@
 - name: Add Erlang apt repo key
   apt_key:
     url: https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc
-    state: latest
+    state: present
 
 - name: Add Erlang apt repo, dependency for RabbitMQ (Ubuntu repo)
   apt_repository:
     repo: "deb http://packages.erlang-solutions.com/ubuntu {{ ansible_distribution_release }} contrib"
-    state: latest
+    state: present
     update_cache: yes
   when: ansible_distribution == 'Ubuntu'
 
 - name: Add RabbitMQ apt repo key
   apt_key:
     url: https://www.rabbitmq.com/rabbitmq-release-signing-key.asc
-    state: latest
+    state: present
 
 - name: Add RabbitMQ apt repo (Debian/Ubuntu)
   apt_repository:
     repo: "deb https://dl.bintray.com/rabbitmq/debian {{ ansible_distribution_release }} main"
-    state: latest
+    state: present
     update_cache: yes
 
 - name: Install rabbitmq-server package (from RabbitMQ repo)
   apt:
     name: rabbitmq-server
-    state: latest
+    state: present
 
 - name: Configure erlang cookie
   template:
