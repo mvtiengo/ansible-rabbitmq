@@ -1,6 +1,6 @@
 import pika
 credentials = pika.PlainCredentials("admin", "admin")
-connection = pika.BlockingConnection(pika.ConnectionParameters(host="192.168.56.11",
+connection = pika.BlockingConnection(pika.ConnectionParameters(host="your_host",
                                      credentials=credentials))
 channel = connection.channel()
 channel.queue_declare(queue='hello')
