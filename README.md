@@ -29,3 +29,20 @@ rabbitmq_master: rabbitmq-master
 ## Plugins
 
 Dentro de plugins temos um diretório chamado stress com um simples python para alimentar e consumir as filas.
+
+## Test Molecule
+
+Utileze o molecule para validar esta role.
+
+## Dependencias
+
+Ansible >= 2.7
+Python >= 3.7 with Ansible >= 2.7
+
+$ pip3 install molecule docker docker-py testinfra
+
+## Execução
+
+$ molecule test
+$ molecule converge
+$ molecule verify

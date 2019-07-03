@@ -4,4 +4,4 @@
   systemd:
     state: restarted
     name: rabbitmq-server
-    enabled: True
+    enabled: true

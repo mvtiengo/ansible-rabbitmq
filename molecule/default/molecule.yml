@@ -1,0 +1,48 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+  network:
+    - name: rabbitmq-docker-network
+      driver: bridge
+lint:
+  name: yamllint
+platforms:
+  - name: rabbitmq1
+    image: "geerlingguy/docker-${MOLECULE_DISTRO:-centos7}-ansible:latest"
+    privileged: true
+    command: '/lib/systemd/systemd'
+    networks:
+      - name: rabbitmq-docker-network
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    network_mode: rabbitmq-docker-network
+  - name: rabbitmq2
+    image: "geerlingguy/docker-${MOLECULE_DISTRO:-centos7}-ansible:latest"
+    privileged: true
+    command: '/lib/systemd/systemd'
+    networks:
+      - name: rabbitmq-docker-network
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    network_mode: rabbitmq-docker-network
+  - name: rabbitmq3
+    image: "geerlingguy/docker-${MOLECULE_DISTRO:-centos7}-ansible:latest"
+    privileged: true
+    command: '/lib/systemd/systemd'
+    networks:
+      - name: rabbitmq-docker-network
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    network_mode: rabbitmq-docker-network
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+scenario:
+  name: default
+verifier:
+  name: testinfra
+  lint:
+    name: flake8

@@ -7,11 +7,11 @@ admin_password: admin
 erlang_cookie: PZCYRTAWOOCGDYDUIBZX
 
 # Clustering
-rabbitmq_master: rabbitmq01
-rabbitmq_master_node: rabbitmq01
+rabbitmq_master: rabbitmq1
+rabbitmq_master_node: rabbitmq1
 
 # Watermark params
-waltermark: 0.62
+watermark: 0.62
 
 # Hipe Compile
 hipe_compile: false
