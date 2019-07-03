@@ -8,10 +8,13 @@ galaxy_info:
   platforms:
     - name: Ubuntu
       versions:
-        - xenial
-    - name: Centos
+        - all
+    - name: EL
       versions:
-        - 7
+        - all
+    - name: Debian
+      versions:
+        - all
   galaxy_tags:
     - system
     - queue
