@@ -1,4 +1,4 @@
-# Role Ansible para Ubuntu
+# Role Ansible para RabbitMQ Cluster
 
 ## Ajustes
 
