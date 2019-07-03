@@ -44,5 +44,3 @@ $ pip3 install molecule docker docker-py testinfra
 ## Execução
 
 $ molecule test
-$ molecule converge
-$ molecule verify
